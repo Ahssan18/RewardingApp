@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.WalletFragment">
+
+    <RelativeLayout
+        android:id="@+id/wallet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp"
+        android:background="@color/primary">
+
+        <ImageView
+            android:id="@+id/wallet_icon"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/ic_wallet"
+            app:tint="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"/>
+
+        <TextView
+            android:id="@+id/text_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Wallet"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_22sdp" />
+
+        <TextView
+            android:id="@+id/user_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_wallet"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_toEndOf="@id/wallet_icon"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/loading"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_25sdp" />
+
+        <TextView
+            android:id="@+id/points_conversion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_points"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_toEndOf="@id/wallet_icon"
+            android:fontFamily="@font/poppins_regular"
+            android:text="100 earningHistory = 1$"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/minimum_withdraw_limit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Minimum withdraw limit is 1000 earningHistory"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/text_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wallet_layout"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/history"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_earning_history_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/open_withdraw_dialogue_btn"
+        android:layout_below="@id/text_history"
+        android:layout_marginTop="@dimen/_10sdp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/open_withdraw_dialogue_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/withdraw"
+        android:backgroundTint="@color/secondary"/>
+
+</RelativeLayout>

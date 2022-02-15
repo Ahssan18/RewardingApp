@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SpinWheelActivity"
+    android:background="@drawable/spin_wheel_bg">
+
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/title_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/spin_wheel"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/spin_wheel"
+        android:layout_width="@dimen/_270sdp"
+        android:layout_height="@dimen/_270sdp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="85dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        app:srcCompat="@drawable/wheel_content"
+        android:contentDescription="@string/image"/>
+
+    <ImageView
+        android:id="@+id/wheel_body"
+        android:layout_width="@dimen/_265sdp"
+        android:layout_height="@dimen/_265sdp"
+        android:layout_marginTop="79dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        app:srcCompat="@drawable/wheel__body"
+        android:contentDescription="@string/image"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/spin_wheel_btn"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:backgroundTint="@color/secondary"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="@dimen/_15sdp"
+        android:text="@string/spin"
+        app:cornerRadius="@dimen/_8sdp"
+        app:layout_constraintBottom_toTopOf="@+id/ad_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spin_wheel"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <RelativeLayout
+        android:id="@+id/ad_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

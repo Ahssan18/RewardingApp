@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "299211011231",
+    "project_id": "kuji-df940",
+    "storage_bucket": "kuji-df940.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299211011231:android:1ab887dbd0ff9db87d1eaa",
+        "android_client_info": {
+          "package_name": "com.ncodelab.rewardingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299211011231-hgam0r478lh835v5mpvumems021s3imk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ncodelab.rewardingapp",
+            "certificate_hash": "5466cf9f16a3bed749692bd79a86c7bf573898c1"
+          }
+        },
+        {
+          "client_id": "299211011231-iuh68oev2tagpn43f6n6t0hj8s7h8qne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwz4W-QBt8s1uMqZy0gRGfaCuIXBwHCKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299211011231-iuh68oev2tagpn43f6n6t0hj8s7h8qne.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
