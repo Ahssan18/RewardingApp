@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +39,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     @Override
     public ArticleAdapter.ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_layout, parent, false);
 
         return new ArticleViewHolder(view);
     }
@@ -48,10 +49,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 
         Article article = articleArrayList.get(position);
 
-        if (article.getArticleDescription() == null){
+        if (article.getArticleDescription() == null) {
             holder.articleDescription.setVisibility(View.GONE);
         }
-        if (article.getArticleImageUrl() == null){
+        if (article.getArticleImageUrl() == null) {
             holder.articleImage.setVisibility(View.GONE);
         }
 
@@ -63,22 +64,30 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         holder.articleCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.getUrl()));
-                v.getContext().startActivity(browserIntent);
-                
+                try {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.getUrl()));
+                    v.getContext().startActivity(browserIntent);
+                } catch (Exception e) {
+                    Toast.makeText(context, "Unable to open this article!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+
                 long articleReward = 1;
 
-                FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid())
-                        .update("userPoints", FieldValue.increment(articleReward));
+                try {
+                    FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid())
+                            .update("userPoints", FieldValue.increment(articleReward));
 
-                EarningHistory earningHistory = new EarningHistory("Reading Article",articleReward);
-                FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid())
-                        .collection("UserEarnedPoints")
-                        .document()
-                        .set(earningHistory);
+                    EarningHistory earningHistory = new EarningHistory("Reading Article", articleReward);
+                    FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid())
+                            .collection("UserEarnedPoints")
+                            .document()
+                            .set(earningHistory);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
-
 
 
     }
@@ -91,7 +100,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
         MaterialCardView articleCard;
-        TextView articleTitle,articleDescription;
+        TextView articleTitle, articleDescription;
         ImageView articleImage;
 
 

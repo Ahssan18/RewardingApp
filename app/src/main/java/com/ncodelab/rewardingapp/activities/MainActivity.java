@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         currentFragment = new WalletFragment();
                         break;
-                    case 2:
+                   /* case 2:
                         currentFragment = new LeaderboardFragment();
-                        break;
-                    case 3:
+                        break;*/
+                    case 2:
                         currentFragment = new ProfileFragment();
                         break;
                 }

@@ -120,8 +120,8 @@
                         android:layout_height="@dimen/_90sdp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_25sdp"
-                        android:src="@drawable/wheel_icon"
-                        android:contentDescription="@string/image"/>
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/wheel_icon" />
 
                     <TextView
                         android:layout_width="wrap_content"

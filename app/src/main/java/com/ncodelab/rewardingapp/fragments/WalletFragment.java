@@ -272,13 +272,17 @@ public class WalletFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                withdrawLimit = documentSnapshot.getLong("minimumWithdrawLimit");
+                try {
+                    withdrawLimit = documentSnapshot.getLong("minimumWithdrawLimit");
 
-                pointsValue = documentSnapshot.getLong("pointsConversion");
+                    pointsValue = documentSnapshot.getLong("pointsConversion");
 
-                minimumWithdrawLimit.setText(withdrawLimit+" in minimum withdraw limit");
+                    minimumWithdrawLimit.setText(withdrawLimit+" in minimum withdraw limit");
 
-                pointsConversion.setText(pointsValue +" = 1 $");
+                    pointsConversion.setText(pointsValue +" = 1 $");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -289,7 +293,11 @@ public class WalletFragment extends Fragment {
         documentReference1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                totalWithdrawRequests = documentSnapshot.getLong("withdrawRequests");
+                try {
+                    totalWithdrawRequests = documentSnapshot.getLong("withdrawRequests");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 

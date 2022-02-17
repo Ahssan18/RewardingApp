@@ -98,8 +98,8 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_10sdp"
+        android:backgroundTint="@color/secondary"
         android:fontFamily="@font/poppins_regular"
-        android:text="@string/withdraw"
-        android:backgroundTint="@color/secondary"/>
+        android:text="@string/withdraw" />
 
 </RelativeLayout>
