@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RewardingApp">
         <activity
+            android:name=".activities.CodeVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PhoneAuthActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.NoInternetActivity"
             android:exported="true" />
         <activity

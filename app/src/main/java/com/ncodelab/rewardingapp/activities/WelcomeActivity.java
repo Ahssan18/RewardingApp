@@ -66,7 +66,7 @@ public class WelcomeActivity extends AppCompatActivity {
         createAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WelcomeActivity.this.startActivity(new Intent(WelcomeActivity.this, CreateAccountActivity.class));
+                WelcomeActivity.this.startActivity(new Intent(WelcomeActivity.this, PhoneAuthActivity.class));
             }
         });
 

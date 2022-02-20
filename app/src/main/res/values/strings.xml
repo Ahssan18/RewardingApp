@@ -61,5 +61,9 @@
     <string name="wrong_answers">Wrong Answers</string>
     <string name="title_privacy_policy">Privacy policy</string>
     <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="create_user">Create User</string>
+    <string name="phone_number">phone number</string>
+    <string name="enter_6_digit_code_here">Enter 6 digit code here</string>
+    <string name="login_with_phone">Login with phone</string>
 
 </resources>

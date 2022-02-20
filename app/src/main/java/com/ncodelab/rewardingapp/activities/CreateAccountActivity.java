@@ -28,9 +28,10 @@ import com.ncodelab.rewardingapp.model.User;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    TextInputLayout userNameInput,userEmailInput,userPhoneInput,userPasswordInput;
-    MaterialButton createAccountBtn,login;
+    TextInputLayout userNameInput, userEmailInput, userPhoneInput, userPasswordInput;
+    MaterialButton createAccountBtn, login;
     ImageView backBtn;
+    String mbl;
 
     public static final String TAG = "AUTHENTICATION";
 
@@ -54,7 +55,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CreateAccountActivity.this,WelcomeActivity.class));
+                startActivity(new Intent(CreateAccountActivity.this, WelcomeActivity.class));
                 finish();
             }
         });
@@ -62,17 +63,25 @@ public class CreateAccountActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CreateAccountActivity.this,LoginActivity.class));
+                startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
             }
         });
 
 
     }
-    public void initializeViews(){
+
+    public void initializeViews() {
 
         userNameInput = findViewById(R.id.user_name_input);
         userEmailInput = findViewById(R.id.user_email_input);
         userPhoneInput = findViewById(R.id.user_phone_input);
+        mbl = getIntent().getStringExtra("phone");
+        Log.e(TAG, "phone => " + mbl);
+        try {
+            userPhoneInput.getEditText().setText(mbl);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         userPasswordInput = findViewById(R.id.user_password_input);
 
         createAccountBtn = findViewById(R.id.create_account_btn);
@@ -86,100 +95,98 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     }
 
-    private void createAccount(){
+    private void createAccount() {
 
-        if (userNameInput.getEditText().getText().toString().equals("")){
+        if (userNameInput.getEditText().getText().toString().equals("")) {
             displayErrorToast("Please enter your name");
             return;
         }
-        if (userEmailInput.getEditText().getText().toString().equals("")){
+        if (userEmailInput.getEditText().getText().toString().equals("")) {
             displayErrorToast("Please enter your email");
             return;
         }
-        if (userPhoneInput.getEditText().getText().toString().equals("")){
+        userPhoneInput.getEditText().setText(mbl);
+        userPhoneInput.getEditText().setEnabled(false);
+        if (userPhoneInput.getEditText().getText().toString().equals("")) {
             displayErrorToast("Please enter your email");
             return;
         }
-        if (userPasswordInput.getEditText().getText().toString().equals("")){
+       /* if (userPasswordInput.getEditText().getText().toString().equals("")){
             displayErrorToast("Please create your password");
             return;
-        }
+        }*/
 
         final ProgressBar progressBar = findViewById(R.id.progress_bar);
 
         createAccountBtn.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
-        String name,email,phone,password;
+        String name, email, phone, password;
 
         name = userNameInput.getEditText().getText().toString();
         email = userEmailInput.getEditText().getText().toString();
         phone = userPhoneInput.getEditText().getText().toString();
         password = userPasswordInput.getEditText().getText().toString();
 
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
+        database.collection("Stats").document("stats")
+                .update("totalUsers", FieldValue.increment(1));
+
+        Log.d(TAG, "User Account Created");
+
+        String referralCode = firebaseAuth.getUid();
+
+        User user = new User(name, email, phone, null, firebaseAuth.getUid(), null, "Phone");
+
+        database.collection("Users")
+                .document(firebaseAuth.getUid())
+                .set(user)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()) {
+                            displaySuccessfulToast("Account Created");
+                            startActivity(new Intent(CreateAccountActivity.this, MainActivity.class));
+                            finish();
+                            Log.d(TAG, "User Data Saved");
+                            progressBar.setVisibility(View.VISIBLE);
+                        } else {
+                            displayErrorToast("Wrong Credentials or Account already exist with these credentials");
+                            Log.d(TAG, "Error occurred in firestore = " + task.getException().toString());
+                            createAccountBtn.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
+                        }
+
+                    }
+                });
+      /*  firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if (task.isSuccessful()){
-
-                    database.collection("Stats").document("stats")
-                            .update("totalUsers", FieldValue.increment(1));
-
-                    Log.d(TAG,"User Account Created");
-
-                    String referralCode = firebaseAuth.getUid();
-
-                    User user = new User(name,email,phone,password,firebaseAuth.getUid(),null,"Email");
-
-                    database.collection("Users")
-                            .document(firebaseAuth.getUid())
-                            .set(user)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-
-                                    if (task.isSuccessful()){
-                                        displaySuccessfulToast("Account Created");
-                                        startActivity(new Intent(CreateAccountActivity.this,MainActivity.class));
-                                        finish();
-                                        Log.d(TAG,"User Data Saved");
-                                    }
-                                    else {
-                                        displayErrorToast("Wrong Credentials or Account already exist with these credentials");
-                                        Log.d(TAG,"Error occurred in firestore = "+task.getException().toString());
-                                        createAccountBtn.setVisibility(View.VISIBLE);
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                    }
-
-                                }
-                            });
+                        if (task.isSuccessful()) {
 
 
 
-                }
 
-                else {
-                    createAccountBtn.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    displayErrorToast("Some Error occurred");
-                    Log.d(TAG,"Firebase Auth Error = "+task.getException());
-                }
-
-
-            }
-        });
+                        } else {
+                            createAccountBtn.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
+                            displayErrorToast("Some Error occurred");
+                            Log.d(TAG, "Firebase Auth Error = " + task.getException());
+                        }
 
 
+                    }
+                });*/
 
 
     }
 
-    public void displayErrorToast(String msg){
+    public void displayErrorToast(String msg) {
         LayoutInflater inflater = getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.toast_layout,findViewById(R.id.customToast));
+        View view = inflater.inflate(R.layout.toast_layout, findViewById(R.id.customToast));
 
         MaterialCardView customToast = view.findViewById(R.id.customToast);
         TextView toastMessage = view.findViewById(R.id.toastMessage);
@@ -196,15 +203,15 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         errorToast.setView(view);
 
-        errorToast.setGravity(Gravity.TOP,0,20);
+        errorToast.setGravity(Gravity.TOP, 0, 20);
 
         errorToast.show();
     }
 
-    public void displaySuccessfulToast(String msg){
+    public void displaySuccessfulToast(String msg) {
         LayoutInflater inflater = getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.toast_layout,findViewById(R.id.customToast));
+        View view = inflater.inflate(R.layout.toast_layout, findViewById(R.id.customToast));
 
         MaterialCardView customToast = view.findViewById(R.id.customToast);
         TextView toastMessage = view.findViewById(R.id.toastMessage);
@@ -221,7 +228,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         errorToast.setView(view);
 
-        errorToast.setGravity(Gravity.TOP,0,20);
+        errorToast.setGravity(Gravity.TOP, 0, 20);
 
         errorToast.show();
     }

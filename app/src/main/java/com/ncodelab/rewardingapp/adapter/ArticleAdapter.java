@@ -72,7 +72,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                     e.printStackTrace();
                 }
 
-                long articleReward = 1;
+//                long articleReward = 1;
+                long articleReward = 0;
 
                 try {
                     FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid())

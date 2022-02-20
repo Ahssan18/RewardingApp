@@ -231,8 +231,16 @@ public class HomeFragment extends Fragment {
 
                         User user = documentSnapshot.toObject(User.class);
 
-                        userName.setText(user.getName());
-                        userPoints.setText(String.valueOf(user.getUserPoints()));
+                        try {
+                            userName.setText(user.getName());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            userPoints.setText(String.valueOf(user.getUserPoints()));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 });

@@ -52,6 +52,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "299211011231-3e2d5g6tq593lskk2ibcborplukcc7tn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ncodelab.rewardingapp",
+            "certificate_hash": "7813d05eb018e643dee921a1f7f8ed3fc2e82273"
+          }
+        },
+        {
           "client_id": "299211011231-hgam0r478lh835v5mpvumems021s3imk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

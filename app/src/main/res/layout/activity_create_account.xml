@@ -57,16 +57,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
             android:hint="@string/name"
-            app:hintTextColor="@color/secondary"
             app:boxStrokeColor="@color/secondary"
             app:errorEnabled="false"
+            app:hintTextColor="@color/secondary"
             app:startIconDrawable="@drawable/ic_user">
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,17 +76,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            app:boxStrokeColor="@color/secondary"
-            app:hintTextColor="@color/secondary"
             android:hint="@string/email"
+            app:boxStrokeColor="@color/secondary"
             app:errorEnabled="false"
+            app:hintTextColor="@color/secondary"
             app:startIconDrawable="@drawable/ic_mail">
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,9 +97,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
             android:hint="@string/phone"
-            app:hintTextColor="@color/secondary"
             app:boxStrokeColor="@color/secondary"
             app:errorEnabled="false"
+            app:hintTextColor="@color/secondary"
             app:startIconDrawable="@drawable/ic_phone">
 
 
@@ -113,15 +113,16 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/user_password_input"
+            android:visibility="gone"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
             android:hint="@string/create_password"
-            app:hintTextColor="@color/secondary"
             app:boxStrokeColor="@color/secondary"
             app:endIconMode="password_toggle"
             app:errorEnabled="false"
+            app:hintTextColor="@color/secondary"
             app:startIconDrawable="@drawable/ic_password">
 
 
@@ -143,9 +144,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:backgroundTint="@color/secondary"
+                android:fontFamily="@font/poppins_regular"
                 android:text="@string/create_account"
                 android:visibility="visible"
-                android:fontFamily="@font/poppins_regular"
                 tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
             <ProgressBar

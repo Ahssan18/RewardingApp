@@ -121,6 +121,9 @@ public class SpinWheelActivity extends AppCompatActivity {
 
         degrees = random.nextInt(points.length-1);
 
+//        degrees=4;
+        Log.e(TAG,"spin degree val => "+degrees);
+        Log.e(TAG,"spin degree=> "+(360*points.length)+pointsDegrees[degrees]);
         RotateAnimation rotateAnimation = new RotateAnimation(0,(360*points.length)+pointsDegrees[degrees],
                 RotateAnimation.RELATIVE_TO_SELF,0.5f,RotateAnimation.RELATIVE_TO_SELF,0.5f);
 
@@ -139,6 +142,7 @@ public class SpinWheelActivity extends AppCompatActivity {
 
                 int spinPoints = points[points.length - (degrees + 1)];
 
+                Log.e(TAG,"spin You Earned=> "+spinPoints);
                 displayCongratsToast("You Earned "+spinPoints);
 
                 long pointsToAdd = spinPoints * 1;

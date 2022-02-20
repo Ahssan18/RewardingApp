@@ -97,12 +97,14 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_account_btn"
             android:layout_width="match_parent"
+            android:textAllCaps="false"
             android:layout_height="@dimen/_45sdp"
             android:backgroundTint="@color/secondary"
             android:fontFamily="@font/poppins_regular"
-            android:text="@string/create_account" />
+            android:text="@string/login_with_phone" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
@@ -112,6 +114,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_btn"
+            android:visibility="gone"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"

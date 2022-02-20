@@ -136,8 +136,16 @@ public class ProfileFragment extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
 
-                userName.setText(user.getName());
-                userEmail.setText(user.getEmail());
+                try {
+                    userName.setText(user.getName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    userEmail.setText(user.getEmail());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         });
