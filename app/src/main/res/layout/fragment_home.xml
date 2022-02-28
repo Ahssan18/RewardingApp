@@ -217,14 +217,14 @@
 
     </HorizontalScrollView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/ad_card_2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_below="@id/scrollView"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"/>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/ad_card_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@id/scrollView"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp" />
 
 
         <androidx.recyclerview.widget.RecyclerView
